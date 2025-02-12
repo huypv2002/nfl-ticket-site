@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Loại bỏ thư viện Swiper vì không cần thiết -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" />
+    <title>NFL Dashboard Access</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(90deg, #2B0031, #6A0DAD, #000000);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hiệu ứng background sân vận động NFL */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .forms-container {
+            padding: 30px;
+        }
+
+        .form-title {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            color: #fff;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #C5161D;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #C5161D;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: #E31837;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(197, 22, 29, 0.3);
+        }
+
+        .error-message {
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            text-align: center;
+            display: none;
+            background: rgba(255, 68, 68, 0.1);
+            color: #ff4444;
+            border: 1px solid #ff4444;
+        }
+
+        /* Hiệu ứng loading */
+        .loading {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading::after {
+            content: '';
+            width: 40px;
+            height: 40px;
+            border: 4px solid #fff;
+            border-top-color: #C5161D;
+            border-radius: 50%;
+            animation: loading 0.8s infinite linear;
+        }
+
+        @keyframes loading {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NFL Dashboard</h1>
+        </div>
+        <div class="forms-container">
+            <h2 class="form-title">Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginUsername">Username</label>
+                    <input type="text" id="loginUsername" name="username" required />
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" name="password" required />
+                </div>
+                <button type="submit" class="submit-btn">Sign In</button>
+                <div id="loginError" class="error-message"></div>
+            </form>
+        </div>
+        <div class="loading"></div>
+    </div>
+
+    <script>
+        class Auth {
+            constructor() {
+                this.SHEET_ID = '1rF309PPmMNDLpVxE54cyYBI5Z14g7auon0jRWYKNv0k';
+                this.API_KEY = 'AIzaSyAPNG150mh-4DwGHf-XKHK0ZAehdqOQLWI';
+                // URL truy cập Google Sheet
+                this.SHEET_URL = `https://sheets.googleapis.com/v4/spreadsheets/${this.SHEET_ID}/values/Sheet1!A1:E100?key=${this.API_KEY}`;
+                this.isAuthenticated = false;
+            }
+
+            async fetchUsers() {
+                const loading = document.querySelector('.loading');
+                loading.style.display = 'flex';
+                try {
+                    const response = await fetch(this.SHEET_URL);
+                    const data = await response.json();
+                    // Bỏ qua hàng đầu tiên (tiêu đề)
+                    const users = data.values.slice(1).map(row => ({
+                        username: row[0],
+                        password: row[1],
+                        expiryDate: row[2],
+                        isActive: row[3] === 'TRUE'
+                    }));
+                    return users;
+                } catch (error) {
+                    console.error('Error fetching users:', error);
+                    throw new Error('Could not fetch user data');
+                } finally {
+                    loading.style.display = 'none';
+                }
+            }
+
+            async login(username, password) {
+                try {
+                    const users = await this.fetchUsers();
+                    const user = users.find(
+                        u => u.username === username && u.password === password
+                    );
+
+                    if (!user) {
+                        throw new Error('Invalid username or password');
+                    }
+
+                    if (!user.isActive) {
+                        throw new Error('Account is inactive');
+                    }
+
+                    if (new Date(user.expiryDate) < new Date()) {
+                        throw new Error('Account has expired');
+                    }
+
+                    this.isAuthenticated = true;
+                    localStorage.setItem('isAuthenticated', 'true');
+                    localStorage.setItem('currentUser', username);
+                    return true;
+                } catch (error) {
+                    throw error;
+                }
+            }
+
+            logout() {
+                this.isAuthenticated = false;
+                localStorage.removeItem('isAuthenticated');
+                localStorage.removeItem('currentUser');
+                window.location.href = 'login.html';
+            }
+
+            checkAuth() {
+                return localStorage.getItem('isAuthenticated') === 'true';
+            }
+        }
+
+        const auth = new Auth();
+
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            const errorElement = document.getElementById('loginError');
+            try {
+                await auth.login(username, password);
+                window.location.href = 'index.html';
+            } catch (error) {
+                errorElement.textContent = error.message;
+                errorElement.style.display = 'block';
+            }
+        });
+
+        if (auth.checkAuth()) {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+
+</html>

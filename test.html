@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phát Video HLS</title>
+  <style>
+    body {
+      background: #000;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    video {
+      width: 80%;
+      max-width: 800px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Thẻ video để hiển thị và phát stream -->
+  <video id="video" controls poster="placeholder.jpg"></video>
+
+  <!-- Thêm thư viện HLS.js -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    const video = document.getElementById('video');
+    // Link m3u8 của bạn
+    const videoSrc = 'https://fox-foxnewsnow-samsungus.amagi.tv/playlist720p.m3u8';
+
+    // Nếu trình duyệt hỗ trợ HLS thông qua HLS.js
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, function() {
+          video.play();
+      });
+    }
+    // Nếu trình duyệt hỗ trợ HLS natively (ví dụ: Safari)
+    else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = videoSrc;
+      video.addEventListener('loadedmetadata', function() {
+          video.play();
+      });
+    } else {
+      console.error('Trình duyệt của bạn không hỗ trợ HLS.');
+    }
+  </script>
+</body>
+</html>

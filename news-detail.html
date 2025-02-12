@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News Detail - NFL TICKET</title>
+  
+  <!-- Remixicon (Icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" />
+  
+  <!-- Swiper CSS (nếu cần dùng cho các phần khác) -->
+  <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+  <!-- HLS.js -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  
+  <style>
+    /* Các style cơ bản cho trang detail, tương tự ticket-detail */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+    body {
+      background: linear-gradient(90deg, #2B0031, #6A0DAD, #000000);
+      color: #fff;
+      min-height: 100vh;
+    }
+    .header {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header__logo {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .header__logo i {
+      color: #C5161D;
+    }
+    .header__actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .header__actions i {
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .main {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .player-container {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .video-player {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+      position: relative;
+    }
+    .match-info {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .match-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .match-status {
+      background: #C5161D;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.875rem;
+    }
+    .related-streams {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .section-title {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .stream-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .stream-card {
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .stream-card:hover {
+      transform: translateY(-5px);
+    }
+    .stream-thumbnail {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+    .stream-info {
+      padding: 1rem;
+    }
+    .stream-title {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .stream-meta {
+      font-size: 0.875rem;
+      color: #ccc;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    @media (max-width: 768px) {
+      .main {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  
+  <!-- MAIN CONTENT -->
+  <main class="main">
+    <!-- PLAYER CONTAINER -->
+    <div class="player-container">
+      <div class="video-player">
+        <!-- Thẻ video sẽ được HLS.js gắn nguồn -->
+        <video id="video" controls poster="placeholder.jpg"></video>
+      </div>
+    </div>
+    
+    <!-- MATCH INFO (News Info) -->
+    <div class="match-info">
+      <div class="match-title">
+        <span id="newsTitle">News Title</span>
+        <span class="match-status">LIVE</span>
+      </div>
+      <!-- Các thông tin khác nếu cần -->
+    </div>
+    
+    <!-- RELATED STREAMS (có thể hiển thị các stream liên quan) -->
+    <div class="related-streams">
+      <h2 class="section-title">
+        <i class="ri-live-line"></i> Related Streams
+      </h2>
+      <div class="stream-grid">
+        <!-- Các thẻ stream-card được thêm vào đây -->
+      </div>
+    </div>
+  </main>
+  
+  <!-- Include file JS riêng cho News Detail -->
+  <script src="assets/js/news-detail.js"></script>
+  
+  <!-- Các script xử lý Authentication, Logout & Session Timeout (chung cho các trang) -->
+  <script>
+    class Auth {
+      constructor() {
+        this.isAuthenticated = this.checkAuth();
+      }
+      checkAuth() {
+        return localStorage.getItem('isAuthenticated') === 'true';
+      }
+      logout() {
+        localStorage.removeItem('isAuthenticated');
+        localStorage.removeItem('user');
+        window.location.href = 'login.html';
+      }
+    }
+    const auth = new Auth();
+    if (!auth.checkAuth()) {
+      window.location.href = 'login.html';
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+      const username = localStorage.getItem('currentUser') || 'Profile';
+      const profileElem = document.getElementById('profileName');
+      if (profileElem) {
+        profileElem.textContent = username;
+      }
+      const logoutBtn = document.querySelector('.nav__link i.ri-logout-box-line')?.parentElement;
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          Swal.fire({
+            title: 'Đăng xuất',
+            text: 'Bạn có chắc chắn muốn đăng xuất?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Đăng xuất',
+            cancelButtonText: 'Hủy'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              auth.logout();
+            }
+          });
+        });
+      }
+    });
+    let sessionTimeout;
+    function resetSessionTimeout() {
+      clearTimeout(sessionTimeout);
+      sessionTimeout = setTimeout(() => {
+        Swal.fire({
+          title: 'Hết phiên làm việc',
+          text: 'Phiên làm việc của bạn đã hết hạn. Vui lòng đăng nhập lại.',
+          icon: 'info',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          auth.logout();
+        });
+      }, 1440 * 60 * 1000);
+    }
+    document.addEventListener('mousemove', resetSessionTimeout);
+    document.addEventListener('keypress', resetSessionTimeout);
+    resetSessionTimeout();
+  </script>
+  
+  <!-- Nếu có các script khác -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

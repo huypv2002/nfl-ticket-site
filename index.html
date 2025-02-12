@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <!--=============== REMIXICONS ===============-->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
+
+   <!--=============== SWIPER CSS ===============-->
+   <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+
+   <!--=============== CSS ===============-->
+   <link rel="stylesheet" href="assets/css/styles.css">
+   <script src="assets/js/show-handler.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+   <title>Responsive movie dashboard - Bedimcode</title>
+</head>
+
+<body>
+   <img src="assets/img/banner.png" alt="image" class="bg__image">
+   <div class="bg__blur"></div>
+
+   <!--==================== HEADER ====================-->
+   <header class="header" id="header">
+      <div class="header__content">
+         <a href="#" class="header__logo">NFL TICKET</a>
+
+         <div class="header__actions">
+            <i class="ri-notification-2-line"></i>
+            <i class="ri-account-circle-line"></i>
+
+            <div class="header__menu" id="header-menu">
+               <i class="ri-menu-line"></i>
+            </div>
+         </div>
+      </div>
+
+      <form action="" class="header__search">
+         <i class="ri-search-line"></i>
+         <input type="search" placeholder="Search movies" class="header__input">
+      </form>
+   </header>
+
+   <!--==================== NAV ====================-->
+   <nav class="nav" id="nav">
+      <div class="nav__menu">
+         <a href="#" class="nav__logo">NFL TICKET</a>
+
+         <ul class="nav__list">
+            <li class="nav__item">
+               <a href="#" class="nav__link">
+                  <i class="ri-home-5-line"></i> <span>Home</span>
+               </a>
+            </li>
+
+            <li class="nav__item">
+               <a href="#" class="nav__link">
+                  <i class="ri-movie-line"></i> <span>Ticket NFL Show</span>
+               </a>
+            </li>
+
+            <li class="nav__item">
+               <a href="news.html" class="nav__link">
+                  <i class="ri-film-line"></i> <span>News</span>
+               </a>
+            </li>
+
+            <li class="nav__item">
+               <a href="#" class="nav__link">
+                  <i class="ri-heart-3-line"></i> <span>Movie</span>
+               </a>
+            </li>
+         </ul>
+
+         <div>
+            <h3 class="nav__title">Account</h3>
+
+            <ul class="nav__list">
+
+               <li class="nav__item">
+                  <a href="#" class="nav__link">
+                     <i class="ri-account-circle-fill"></i> <span id="profileName">Profile</span>
+                  </a>
+               </li>
+            </ul>
+         </div>
+      </div>
+
+      <a href="#" class="nav__link">
+         <i class="ri-logout-box-line"></i> <span>Log Out</span>
+      </a>
+
+      <div class="nav__close" id="nav-close">
+         <i class="ri-close-line"></i>
+      </div>
+   </nav>
+
+   <!--==================== DASHBOARD ====================-->
+   <main class="main">
+      <!--==================== BANNER ====================-->
+      <section class="banner">
+         <article class="banner__card">
+            <a href="#" class="banner__link">
+               <img src="assets/img/bannermain.webp" alt="image" class="banner__img">
+               <div class="banner__shadow"></div>
+
+               <div class="banner__data">
+                  <h2 class="banner__title">NFL TICKET SHOW</h2>
+               </div>
+            </a>
+         </article>
+      </section>
+
+      <!--==================== MOVIES ====================-->
+      <section class="movie">
+         <!-- Row 1 -->
+         <div class="movie__swiper swiper" style="margin-bottom: 50px;">
+            <div class="swiper-wrapper">
+               <!-- Show 1: NFL Sunday Ticket 706 -->
+               <article class="card__article swiper-slide" data-show-id="706">
+                  <a href="#" class="card__link">
+                     <img src="//snapshots.streamlive.to/snapshots/jimbsopkhzeyjb7_snapshot.jpg" alt="image"
+                        class="card__img" />
+                     <div class="card__shadow"></div>
+                     <div class="card__data">
+                        <h3 class="card__name">NFL Sunday Ticket 706</h3>
+                        <span class="card__category">NFL League</span>
+                     </div>
+                     <i class="ri-heart-3-line card__like"></i>
+                  </a>
+               </article>
+
+               <!-- Show 2: NFL Sunday Ticket 711 -->
+               <article class="card__article swiper-slide" data-show-id="711">
+                  <a href="#" class="card__link">
+                     <img src="//snapshots.streamlive.to/snapshots/jpok1aar68inxn7_snapshot.jpg" alt="image"
+                        class="card__img" />
+                     <div class="card__shadow"></div>
+                     <div class="card__data">
+                        <h3 class="card__name">NFL Sunday Ticket 711</h3>
+                        <span class="card__category">NFL League</span>
+                     </div>
+                     <i class="ri-heart-3-line card__like"></i>
+                  </a>
+               </article>
+
+               <!-- Show 3: NFL Sunday Ticket 716 -->
+               <article class="card__article swiper-slide" data-show-id="716">
+                  <a href="#" class="card__link">
+                     <img src="//snapshots.streamlive.to/snapshots/0lqmmfum8nm8e1p_snapshot.jpg" alt="image"
+                        class="card__img" />
+                     <div class="card__shadow"></div>
+                     <div class="card__data">
+                        <h3 class="card__name">NFL Sunday Ticket 716</h3>
+                        <span class="card__category">NFL League</span>
+                     </div>
+                     <i class="ri-heart-3-line card__like"></i>
+                  </a>
+               </article>
+
+               <!-- Show 4: USA NFL Network UHD -->
+               <article class="card__article swiper-slide" data-show-id="usa-nfl-network-uhd">
+                  <a href="#" class="card__link">
+                     <img src="//snapshots.streamlive.to/snapshots/2jbt24yxwp4dmb9_snapshot.jpg" alt="image"
+                        class="card__img" />
+                     <div class="card__shadow"></div>
+                     <div class="card__data">
+                        <h3 class="card__name">USA NFL Network UHD</h3>
+                        <span class="card__category">Premium</span>
+                     </div>
+                     <i class="ri-heart-3-line card__like"></i>
+                  </a>
+               </article>
+
+               <!-- Show 5: USA NFL Redzone UHD -->
+               <article class="card__article swiper-slide" data-show-id="usa-nfl-redzone-uhd">
+                  <a href="#" class="card__link">
+                     <img src="//snapshots.streamlive.to/snapshots/6np5wzrbj66n4r6_snapshot.jpg" alt="image"
+                        class="card__img" />
+                     <div class="card__shadow"></div>
+                     <div class="card__data">
+                        <h3 class="card__name">USA NFL Redzone UHD</h3>
+                        <span class="card__category">Premium</span>
+                     </div>
+                     <i class="ri-heart-3-line card__like"></i>
+                  </a>
+               </article>
+            </div>
+         </div>
+
+         <!-- Row 2 -->
+         <div class="movie__swiper swiper" style="margin-bottom: 50px;">
+            <div class="swiper-wrapper">
+               <!-- Show 6: USA NFL Network -->
+               <article class="card__article swiper-slide" data-show-id="usa-nfl-network">
+                  <a href="#" class="card__link">
+                     <img src="//snapshots.streamlive.to/snapshots/pmcgv6sis3jk2lb_snapshot.jpg" alt="image"
+                        class="card__img" />
+                     <div class="card__shadow"></div>
+                     <div class="card__data">
+                        <h3 class="card__name">USA NFL Network</h3>
+                        <span class="card__category">Premium</span>
+                     </div>
+                     <i class="ri-heart-3-line card__like"></i>
+                  </a>
+               </article>
+
+               <!-- Show 7: USA NFL Network LHD (phiên bản 1) -->
+               <article class="card__article swiper-slide" data-show-id="usa-nfl-network-lhd-1">
+                  <a href="#" class="card__link">
+                     <img src="//snapshots.streamlive.to/snapshots/el6p7ugkh2d9igx_snapshot.jpg" alt="image"
+                        class="card__img" />
+                     <div class="card__shadow"></div>
+                     <div class="card__data">
+                        <h3 class="card__name">USA NFL Network LHD</h3>
+                        <span class="card__category">Premium</span>
+                     </div>
+                     <i class="ri-heart-3-line card__like"></i>
+                  </a>
+               </article>
+
+               <!-- Show 8: USA NFL Network LHD (phiên bản 2) -->
+               <article class="card__article swiper-slide" data-show-id="usa-nfl-network-lhd-2">
+                  <a href="#" class="card__link">
+                     <img src="//snapshots.streamlive.to/snapshots/aezcpmpyfuwkzwq_snapshot.jpg" alt="image"
+                        class="card__img" />
+                     <div class="card__shadow"></div>
+                     <div class="card__data">
+                        <h3 class="card__name">USA NFL Network LHD</h3>
+                        <span class="card__category">Premium</span>
+                     </div>
+                     <i class="ri-heart-3-line card__like"></i>
+                  </a>
+               </article>
+
+               <!-- Show 9: NFL Sunday Ticket 710 -->
+               <article class="card__article swiper-slide" data-show-id="710">
+                  <a href="#" class="card__link">
+                     <img src="//snapshots.streamlive.to/snapshots/idj9se23tld7h5f_snapshot.jpg" alt="image"
+                        class="card__img" />
+                     <div class="card__shadow"></div>
+                     <div class="card__data">
+                        <h3 class="card__name">NFL Sunday Ticket 710</h3>
+                        <span class="card__category">NFL League</span>
+                     </div>
+                     <i class="ri-heart-3-line card__like"></i>
+                  </a>
+               </article>
+
+               <!-- Show 10: NFL Sunday Ticket 707 -->
+               <article class="card__article swiper-slide" data-show-id="707">
+                  <a href="#" class="card__link">
+                     <img src="//snapshots.streamlive.to/snapshots/bwxj8ifcn3fwbn3_snapshot.jpg" alt="image"
+                        class="card__img" />
+                     <div class="card__shadow"></div>
+                     <div class="card__data">
+                        <h3 class="card__name">NFL Sunday Ticket 707</h3>
+                        <span class="card__category">NFL League</span>
+                     </div>
+                     <i class="ri-heart-3-line card__like"></i>
+                  </a>
+               </article>
+            </div>
+         </div>
+
+         <!-- Row 3 -->
+         <div class="movie__swiper swiper" style="margin-bottom: 50px;">
+            <div class="swiper-wrapper">
+               <!-- Show 11: NFL Sunday Ticket 717 -->
+               <article class="card__article swiper-slide" data-show-id="717">
+                  <a href="#" class="card__link">
+                     <img src="//snapshots.streamlive.to/snapshots/fj4edhrs7i8nqit_snapshot.jpg" alt="image"
+                        class="card__img" />
+                     <div class="card__shadow"></div>
+                     <div class="card__data">
+                        <h3 class="card__name">NFL Sunday Ticket 717</h3>
+                        <span class="card__category">NFL League</span>
+                     </div>
+                     <i class="ri-heart-3-line card__like"></i>
+                  </a>
+               </article>
+
+               <!-- Show 12: NFL Sunday Ticket 708 -->
+               <article class="card__article swiper-slide" data-show-id="708">
+                  <a href="#" class="card__link">
+                     <img src="//snapshots.streamlive.to/snapshots/yl1pwcbqv9xusyk_snapshot.jpg" alt="image"
+                        class="card__img" />
+                     <div class="card__shadow"></div>
+                     <div class="card__data">
+                        <h3 class="card__name">NFL Sunday Ticket 708</h3>
+                        <span class="card__category">NFL League</span>
+                     </div>
+                     <i class="ri-heart-3-line card__like"></i>
+                  </a>
+               </article>
+
+               <!-- Show 13: NFL Sunday Ticket 714 -->
+               <article class="card__article swiper-slide" data-show-id="714">
+                  <a href="#" class="card__link">
+                     <img src="//snapshots.streamlive.to/snapshots/ru1w3g4687tk4wb_snapshot.jpg" alt="image"
+                        class="card__img" />
+                     <div class="card__shadow"></div>
+                     <div class="card__data">
+                        <h3 class="card__name">NFL Sunday Ticket 714</h3>
+                        <span class="card__category">NFL League</span>
+                     </div>
+                     <i class="ri-heart-3-line card__like"></i>
+                  </a>
+               </article>
+
+               <!-- Show 14: NFL Sunday Ticket 712 -->
+               <article class="card__article swiper-slide" data-show-id="712">
+                  <a href="#" class="card__link">
+                     <img src="//snapshots.streamlive.to/snapshots/ymfx3zn0to5ngkf_snapshot.jpg" alt="image"
+                        class="card__img" />
+                     <div class="card__shadow"></div>
+                     <div class="card__data">
+                        <h3 class="card__name">NFL Sunday Ticket 712</h3>
+                        <span class="card__category">NFL League</span>
+                     </div>
+                     <i class="ri-heart-3-line card__like"></i>
+                  </a>
+               </article>
+
+               <!-- Show 15: NFL Sunday Ticket 713 -->
+               <article class="card__article swiper-slide" data-show-id="713">
+                  <a href="#" class="card__link">
+                     <img src="//snapshots.streamlive.to/snapshots/ql2hr9qa5utj9fp_snapshot.jpg" alt="image"
+                        class="card__img" />
+                     <div class="card__shadow"></div>
+                     <div class="card__data">
+                        <h3 class="card__name">NFL Sunday Ticket 713</h3>
+                        <span class="card__category">NFL League</span>
+                     </div>
+                     <i class="ri-heart-3-line card__like"></i>
+                  </a>
+               </article>
+            </div>
+         </div>
+
+         <!-- Row 4 -->
+         <div class="movie__swiper swiper">
+            <div class="swiper-wrapper">
+               <!-- Show 16: NFL Sunday Ticket 715 -->
+               <article class="card__article swiper-slide" data-show-id="715">
+                  <a href="#" class="card__link">
+                     <img src="//snapshots.streamlive.to/snapshots/93bctufs6hjboys_snapshot.jpg" alt="image"
+                        class="card__img" />
+                     <div class="card__shadow"></div>
+                     <div class="card__data">
+                        <h3 class="card__name">NFL Sunday Ticket 715</h3>
+                        <span class="card__category">NFL League</span>
+                     </div>
+                     <i class="ri-heart-3-line card__like"></i>
+                  </a>
+               </article>
+
+               <!-- Show 17: NFL Sunday Ticket 709 -->
+               <article class="card__article swiper-slide" data-show-id="709">
+                  <a href="#" class="card__link">
+                     <img src="//snapshots.streamlive.to/snapshots/5ye9h90pvhsrcw9_snapshot.jpg" alt="image"
+                        class="card__img" />
+                     <div class="card__shadow"></div>
+                     <div class="card__data">
+                        <h3 class="card__name">NFL Sunday Ticket 709</h3>
+                        <span class="card__category">NFL League</span>
+                     </div>
+                     <i class="ri-heart-3-line card__like"></i>
+                  </a>
+               </article>
+
+               <!-- Show 18: CA NFL Network -->
+               <article class="card__article swiper-slide" data-show-id="ca-nfl-network">
+                  <a href="#" class="card__link">
+                     <img src="//snapshots.streamlive.to/snapshots/4lbvpmyty2owk3q_snapshot.jpg" alt="image"
+                        class="card__img" />
+                     <div class="card__shadow"></div>
+                     <div class="card__data">
+                        <h3 class="card__name">CA NFL Network</h3>
+                        <span class="card__category">Canada TV</span>
+                     </div>
+                     <i class="ri-heart-3-line card__like"></i>
+                  </a>
+               </article>
+
+               <!-- Show 19: NFL Sunday Ticket 705 -->
+               <article class="card__article swiper-slide" data-show-id="705">
+                  <a href="#" class="card__link">
+                     <img src="//snapshots.streamlive.to/snapshots/05z1qoqt3hbxrle_snapshot.jpg" alt="image"
+                        class="card__img" />
+                     <div class="card__shadow"></div>
+                     <div class="card__data">
+                        <h3 class="card__name">NFL Sunday Ticket 705</h3>
+                        <span class="card__category">NFL League</span>
+                     </div>
+                     <i class="ri-heart-3-line card__like"></i>
+                  </a>
+               </article>
+
+               <!-- Show 20: USA NFL Network SD -->
+               <article class="card__article swiper-slide" data-show-id="usa-nfl-network-sd">
+                  <a href="#" class="card__link">
+                     <img src="//snapshots.streamlive.to/snapshots/phxhm6zxqdk45f5_snapshot.jpg" alt="image"
+                        class="card__img" />
+                     <div class="card__shadow"></div>
+                     <div class="card__data">
+                        <h3 class="card__name">USA NFL Network SD</h3>
+                        <span class="card__category">NFL League</span>
+                     </div>
+                     <i class="ri-heart-3-line card__like"></i>
+                  </a>
+               </article>
+            </div>
+         </div>
+      </section>
+   </main>
+
+   <!--=============== SWIPER JS ===============-->
+   <script src="assets/js/swiper-bundle.min.js"></script>
+   <script>
+      class Auth {
+         constructor() {
+            this.isAuthenticated = this.checkAuth();
+         }
+
+         checkAuth() {
+            return localStorage.getItem('isAuthenticated') === 'true';
+         }
+
+         logout() {
+            // Xóa thông tin authentication
+            localStorage.removeItem('isAuthenticated');
+            localStorage.removeItem('user');
+
+            // Chuyển hướng về trang login
+            window.location.href = 'login.html';
+         }
+      }
+
+      // Khởi tạo Auth
+      const auth = new Auth();
+
+      // Kiểm tra authentication khi load trang
+      if (!auth.checkAuth()) {
+         window.location.href = 'login.html';
+      }
+
+      // Xử lý sự kiện logout
+      document.addEventListener('DOMContentLoaded', function () {
+         const username = localStorage.getItem('currentUser') || 'Profile';
+         // Gán tên user vào thẻ span có id "profileName"
+         document.getElementById('profileName').textContent = username;
+
+
+
+         const logoutBtn = document.querySelector('.nav__link i.ri-logout-box-line').parentElement;
+         logoutBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            Swal.fire({
+               title: 'Đăng xuất',
+               text: 'Bạn có chắc chắn muốn đăng xuất?',
+               icon: 'warning',
+               showCancelButton: true,
+               confirmButtonText: 'Đăng xuất',
+               cancelButtonText: 'Hủy'
+            }).then((result) => {
+               if (result.isConfirmed) {
+                  auth.logout();
+               }
+            });
+         });
+      });
+
+
+
+      // Thêm xử lý cho session timeout
+      let sessionTimeout;
+
+      function resetSessionTimeout() {
+         clearTimeout(sessionTimeout);
+         sessionTimeout = setTimeout(() => {
+            Swal.fire({
+               title: 'Hết phiên làm việc',
+               text: 'Phiên làm việc của bạn đã hết hạn. Vui lòng đăng nhập lại.',
+               icon: 'info',
+               confirmButtonText: 'OK'
+            }).then(() => {
+               auth.logout();
+            });
+         }, 1440 * 60 * 1000); // 30 phút
+
+      }
+
+      // Reset timeout khi user tương tác
+      document.addEventListener('mousemove', resetSessionTimeout);
+      document.addEventListener('keypress', resetSessionTimeout);
+
+      // Khởi tạo session timeout
+      resetSessionTimeout();
+   </script>
+
+   <!--=============== MAIN JS ===============-->
+   <script src="assets/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News - NFL TICKET</title>
+
+    <!--=============== REMIXICONS ===============-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" />
+
+    <!--=============== SWIPER CSS ===============-->
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="assets/js/news-handler.js"></script>
+
+    <style>
+        /* -----------------------------------
+       News Category Card Styles
+    ----------------------------------- */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .news-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-card a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .news-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card-content h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: black;
+        }
+
+        .card-content p {
+            font-size: 14px;
+            color: #555;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Banner Image & Blur -->
+    <img src="assets/img/banner.png" alt="image" class="bg__image" />
+    <div class="bg__blur"></div>
+
+    <!--==================== HEADER ====================-->
+    <header class="header" id="header">
+        <div class="header__content">
+            <a href="index.html" class="header__logo">NFL TICKET</a>
+            <div class="header__actions">
+                <i class="ri-notification-2-line"></i>
+                <i class="ri-account-circle-line"></i>
+                <div class="header__menu" id="header-menu">
+                    <i class="ri-menu-line"></i>
+                </div>
+            </div>
+        </div>
+        <form action="" class="header__search">
+            <i class="ri-search-line"></i>
+            <input type="search" placeholder="Search movies" class="header__input" />
+        </form>
+    </header>
+
+    <!--==================== NAV ====================-->
+    <nav class="nav" id="nav">
+        <div class="nav__menu">
+            <a href="index.html" class="nav__logo">NFL TICKET</a>
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="index.html" class="nav__link">
+                        <i class="ri-home-5-line"></i> <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="/" class="nav__link">
+                        <i class="ri-movie-line"></i> <span>Ticket NFL Show</span>
+                    </a>
+                </li>
+                <!-- Active category News -->
+                <li class="nav__item active">
+                    <a href="news.html" class="nav__link">
+                        <i class="ri-film-line"></i> <span>News</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="movie.html" class="nav__link">
+                        <i class="ri-heart-3-line"></i> <span>Movie</span>
+                    </a>
+                </li>
+            </ul>
+            <div>
+                <h3 class="nav__title">Account</h3>
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">
+                            <i class="ri-account-circle-fill"></i> <span id="profileName">Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <a href="#" class="nav__link">
+            <i class="ri-logout-box-line"></i> <span>Log Out</span>
+        </a>
+        <div class="nav__close" id="nav-close">
+            <i class="ri-close-line"></i>
+        </div>
+    </nav>
+
+    <!--==================== DASHBOARD ====================-->
+    <main class="main">
+        <!--==================== BANNER ====================-->
+        <section class="banner">
+            <article class="banner__card">
+                <a href="#" class="banner__link">
+                    <img src="assets/img/bannermain.webp" alt="image" class="banner__img" />
+                    <div class="banner__shadow"></div>
+                    <div class="banner__data">
+                        <h2 class="banner__title">News</h2>
+                    </div>
+                </a>
+            </article>
+        </section>
+
+        <!--==================== NEWS CATEGORY CARDS ====================-->
+        <section class="news-category">
+            <div class="container">
+                <div class="news-grid">
+                    <!-- Card 1: CNN Live News (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=3324" class="news-link">
+                            <img src="data:image/png;base64,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" alt="CNN Live News (USA)">
+                            <div class="card-content">
+                                <h3>Fox Live News (USA)</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 2: Bloomberg U.S. (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=2991">
+                            <img src="data:image/jpeg;base64,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" alt="Bloomberg U.S. (USA)">
+                            <div class="card-content">
+                                <h3>MSNBC (USA)</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 3: FOX 13 Tampa Bay News (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=2749">
+                            <img src="data:image/jpeg;base64,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"
+                                alt="FOX 13 Tampa Bay News (USA)">
+                            <div class="card-content">
+                                <h3>MSNBC Live (USA)</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 4: CNBC Live (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=2566">
+                            <img src="data:image/png;base64,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" alt="CNBC Live (USA)">
+                            <div class="card-content">
+                                <h3>ABC News (USA)</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 5: NBC Live (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=2563">
+                            <img src="data:image/png;base64,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" alt="NBC Live (USA)">
+                            <div class="card-content">
+                                <h3>CNBC (USA)</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 6: NBC 12 (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=2395">
+                            <img src="data:image/png;base64,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" alt="NBC 12 (USA)">
+                            <div class="card-content">
+                                <h3>CNN USA Live</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 7: WJZ CBS13 (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=2156">
+                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAE8AVAMBIgACEQEDEQH/xAAcAAADAQEBAAMAAAAAAAAAAAAABgcIBAUBAgP/xABAEAABAwMBBQUFBAUNAAAAAAABAAIDBAURBgcSITFBN1FhcXMTIoGys5GhscEIFTJC0hQWFxgjM0RSVVaUo9H/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A47Ht8uEbgy/WmnnZnjJSOMbgPJxIJ+IVc0nrSxatgL7PWNdM0ZkppBuys82nmPEZCx6uq1z1tPcaeW1vnZWtkHsDBnf3zwAbjjk8sINsoXj6SdenadonalbC26GP+2EXLwz03sYzjhnOF7CAXi6zvj9N6Yr7xHA2odSsDhE526HZcBz+K9pJ21/s3vnpM+o1BN/6wNX/ALdh/wCWf4UxaF2zU2or5Ha7rQR250+G08om32uk6NOQMZ6ePDqs5r5a4tcHNJBByCOiDcSFNdje0Aaotv6ruko/XFIzi4/4iMcN/wAxwB+3rwpSAQhCCU662MWm6wyVWm2tt1eASIB/cSnux+6fEcPBdGybZjHpeJl2vTGS3qRvusyHNpQegPIu7z8B1JpyEAhCEAk7a/2b3z0mfUanFJ21/s3vnpM+o1Bk1CF944pJd72Ubn7rS526M4A5k+CDptFyq7Pcqe42+UxVVO/fjeOh/wDOi1loDV9JrOwsr6cCOoYfZ1UHWKTHTvaeYP5grIKY9BatrNHX+K4Uxc+B3uVVODwlj7vMcwe/wyg2AhcVmulHerZTXK3TCWlqGB7HD8D3EciO9CCBaY25XuhcyK/08Vyg6ysAjmH2e6fsHmrVpHWVl1dSGez1O9IwAy08g3ZYs94/MZHiseLts91rrLcYLhbKh8FTC4Oa9hxnjyPeD1HIoNrIS9oPU8OrtM0t2iYI5HZZPEDn2cjeBHlyI8CEwoBJ21/s3vnpM+o1OKTtr/ZvfPSZ9RqDJqoGw2GKp1/DBURtkhlpZ2SMcMhzSwggjuU/VD2Ddo1J6E3ylBy7VtCS6NvW/Sse60VRJppDx3D1jce8dO8eRSMtn6lsNDqSzVFruUe9DM3g4ftRu6Ob3ELJOrtN12lL5PariPfj96OQD3ZWHk4eB/EEIPtZtW6gsdIaS03appacvLzHG7hvHGT9wQvEQgpu2/RVDpe6UlbZ4/Y0VcHZgByI5G4zu+BBHDpg+QmSdtqmuv57XmKSmhfDb6RpZTsf+04k8XOxyJwOHTCSUF1/RprXmG+UJzuNdFMPAneB+UK3KOfo32iSns1zu0rS0VcrYoif3mszk/a7HwKsaASdtf7N756TPqNTik7a/wBm989Jn1GoMmqh7Bu0ak9Cb5Sp4qHsG7RqT0JvlKDUCTtp2iINZ2J0TAxlzpwX0kzuGD1YT/lP3HBTihBiKtpZ6GrmpKuJ0VRA8xyRu5tcDghC1dqXZtpjUtzdcrpRvNU5ga98UpZvY5E45npnuAXygyUmjQeiLnrO5tho4zHRRuH8pq3D3Ym9QO92OQ/AcVY9P7CrFQvZLeK2oub2nO4G+xjPmASfvVQoKGlt1JHSUFNFT08YwyKJga1vwCD8rNa6Sy2qmttviEdNTMDI2/mfEnJPiV2oQgEnbX+ze+ekz6jU4ry9T2SHUdhq7RVSyRQ1TQ1z48bww4HhnyQYwVD2Ddo1J6E3ylUT+gKwf6tc/wDr/hXt6O2T2nSd9iu1FcK2aaNjmBk25ukOGOgCCgoQhAIQhB//2Q==" alt="WJZ CBS13 (USA)">
+                            <div class="card-content">
+                                <h3>CBS (USA)</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 8: CBN News (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=2103">
+                            <img src="http://www.freeintertv.com/images/category/news_2.png" alt="CBN News (USA)">
+                            <div class="card-content">
+                                <h3>CBN News (USA)</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 9: C-SPAN (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=2023">
+                            <img src="http://www.freeintertv.com/images/category/news_2.png" alt="C-SPAN (USA)">
+                            <div class="card-content">
+                                <h3>C-SPAN (USA)</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 10: KGMB9 (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=1916">
+                            <img src="http://www.freeintertv.com/images/category/news_2.png" alt="KGMB9 (USA)">
+                            <div class="card-content">
+                                <h3>KGMB9 (USA)</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 11: The UpTake (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=1775">
+                            <img src="http://www.freeintertv.com/images/category/news_2.png" alt="The UpTake (USA)">
+                            <div class="card-content">
+                                <h3>The UpTake (USA)</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 12: Tru TV (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=1744">
+                            <img src="http://www.freeintertv.com/images/category/news_2.png" alt="Tru TV (USA)">
+                            <div class="card-content">
+                                <h3>Tru TV (USA)</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 13: WDSU6 (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=1449">
+                            <img src="http://www.freeintertv.com/images/category/news_2.png" alt="WDSU6 (USA)">
+                            <div class="card-content">
+                                <h3>WDSU6 (USA)</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 14: KLIVE NEWS 4 Central Oregon (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=1437">
+                            <img src="http://www.freeintertv.com/images/category/news_2.png"
+                                alt="KLIVE NEWS 4 Central Oregon (USA)">
+                            <div class="card-content">
+                                <h3>KLIVE NEWS 4 Central Oregon (USA)</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 15: GroundReport TV (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=1316">
+                            <img src="http://www.freeintertv.com/images/category/news_2.png"
+                                alt="GroundReport TV (USA)">
+                            <div class="card-content">
+                                <h3>GroundReport TV (USA)</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 16: UN Press Briefings (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=1155">
+                            <img src="http://www.freeintertv.com/images/category/news_2.png"
+                                alt="UN Press Briefings (USA)">
+                            <div class="card-content">
+                                <h3>UN Press Briefings (USA)</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 17: WUFT TV (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=1089">
+                            <img src="http://www.freeintertv.com/images/category/news_2.png" alt="WUFT TV (USA)">
+                            <div class="card-content">
+                                <h3>WUFT TV (USA)</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 18: Marti Noticias (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=826">
+                            <img src="http://www.freeintertv.com/images/category/news_2.png" alt="Marti Noticias (USA)">
+                            <div class="card-content">
+                                <h3>Marti Noticias (USA)</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 19: KNBC News RAW (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=323">
+                            <img src="http://www.freeintertv.com/images/category/news_2.png" alt="KNBC News RAW (USA)">
+                            <div class="card-content">
+                                <h3>KNBC News RAW (USA)</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 20: NBC News (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=245">
+                            <img src="http://www.freeintertv.com/images/category/news_2.png" alt="NBC News (USA)">
+                            <div class="card-content">
+                                <h3>NBC News (USA)</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 21: CNN International (USA) -->
+                    <div class="news-card">
+                        <a href="news-detail.html?id=200">
+                            <img src="http://www.freeintertv.com/images/category/news_2.png"
+                                alt="CNN International (USA)">
+                            <div class="card-content">
+                                <h3>CNN International (USA)</h3>
+                                <p>News</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!--=============== SWIPER JS ===============-->
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Authentication, Logout & Session Timeout
+        class Auth {
+            constructor() {
+                this.isAuthenticated = this.checkAuth();
+            }
+            checkAuth() {
+                return localStorage.getItem('isAuthenticated') === 'true';
+            }
+            logout() {
+                localStorage.removeItem('isAuthenticated');
+                localStorage.removeItem('user');
+                window.location.href = 'login.html';
+            }
+        }
+        const auth = new Auth();
+        if (!auth.checkAuth()) {
+            window.location.href = 'login.html';
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const username = localStorage.getItem('currentUser') || 'Profile';
+            document.getElementById('profileName').textContent = username;
+            const logoutBtn = document.querySelector('.nav__link i.ri-logout-box-line')?.parentElement;
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: 'Đăng xuất',
+                        text: 'Bạn có chắc chắn muốn đăng xuất?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Đăng xuất',
+                        cancelButtonText: 'Hủy'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            auth.logout();
+                        }
+                    });
+                });
+            }
+        });
+        let sessionTimeout;
+        function resetSessionTimeout() {
+            clearTimeout(sessionTimeout);
+            sessionTimeout = setTimeout(() => {
+                Swal.fire({
+                    title: 'Hết phiên làm việc',
+                    text: 'Phiên làm việc của bạn đã hết hạn. Vui lòng đăng nhập lại.',
+                    icon: 'info',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    auth.logout();
+                });
+            }, 1440 * 60 * 1000);
+        }
+        document.addEventListener('mousemove', resetSessionTimeout);
+        document.addEventListener('keypress', resetSessionTimeout);
+        resetSessionTimeout();
+    </script>
+</body>
+
+</html>
